@@ -11,7 +11,7 @@ import humidity_icon from '../assets/humidity.png';
 
 const Weather = () => {
 
-    const [setWeather, setWeatherData] = useState(false);
+    const [WeatherData, setWeatherData] = useState(false);
 
     const allIcons = {
         "01d": clear_icon,
@@ -42,8 +42,8 @@ const Weather = () => {
           console.log(data);
           const icon = allIcons[data.weather[0].icon] || clear_icon;
           setWeatherData({
-            hummidity:data.main.hummidity,
-            windSepped:data.wind.speed,
+            humidity:data.main.humidity,
+            windSpeed:data.wind.speed,
             temperature:Math.floor(data.main.temp),
             location:data.name,
             icon: icon
@@ -64,22 +64,22 @@ useEffect(()=>{
         <input type="text" placeholder="Search" />
         <img src={search_icon} alt="" />
       </div>
-      <img src={clear_icon} alt="" className="weather-icon"/>
-      <p className="temperature"> 16°</p>
-      <p className="location">London</p>
+      <img src={WeatherData.icon} alt="" className="weather-icon"/>
+      <p className="temperature"> {WeatherData.temperature}</p>
+      <p className="location">{WeatherData.location}</p>
       <div className="weather-data">
         <div className="col">
             <img src={humidity_icon} alt="" />
         </div>
         <div>
-            <p>91 %</p>
-            <p>Humdiity</p>
+            <p>{WeatherData.temperature}</p>
+            <span>Hummidity</span>
         </div>
         <div className="col">
             <img src={wind_icon} alt="" />
         </div>
         <div>
-            <p>3.6 Km/h</p>
+            <p>{WeatherData.windSpeed}</p>
             <p>Wind Speed</p>
         </div>
       </div>
